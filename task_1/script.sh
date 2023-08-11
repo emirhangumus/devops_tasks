@@ -9,8 +9,8 @@ fname="$fname.txt"
 isExist=$(find . -maxdepth 1 -type f -exec basename {} \; | cut -c 18- | grep -E "^$fname" | wc -l)
 
 if [ $isExist -gt 0 ]; then
-    echo "$fname dosyasının içeriği:"
     fname=$(find . -maxdepth 1 -type f -exec basename {} \; | grep -E "*_$fname" | awk '{ print length, $0 }' | sort -n | head -n 1 | cut -d ' ' -f 2-)
+    echo "$fname dosyasının içeriği:"
     start=1;
     while IFS= read -r line; do
 	    echo -ne "${BBlue}${start}:${NC} $line"
